@@ -1,0 +1,9 @@
+# Driver scripts (run_sweep.py, compute_wear.py, render.py)
+numpy
+pandas
+pyyaml
+# body_process/ (motion preprocessing from AMASS/SMPL)
+torch
+scipy
+libigl
+trimesh

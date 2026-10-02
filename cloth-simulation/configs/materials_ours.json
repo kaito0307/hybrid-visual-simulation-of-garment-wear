@@ -1,0 +1,20 @@
+{
+  "motion_file": ["jump-hires", "running"],
+  "material": [
+    "ours-chino",
+    "ours-corduroy",
+    "ours-cotton-knit",
+    "ours-cotton-plain",
+    "ours-cotton-twill",
+    "ours-denim-110z",
+    "ours-denim-70z",
+    "ours-polyester-knit",
+    "ours-polyester-plain",
+    "ours-polyester-twill",
+    "ours-wool-knit",
+    "ours-wool-plain",
+    "ours-wool-twill"
+  ],
+  "material_rotation": [0, 90],
+  "resolution": [0.8]
+}

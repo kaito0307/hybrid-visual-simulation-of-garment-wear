@@ -21,7 +21,7 @@ Our framework simulates the visual appearance of garment wear by combining physi
 ```
 .
 ├── wear-image-dataset/   # Captured images of worn fabrics (12 fabrics × 10 wear levels)
-├── cloth-simulation/     # Cloth simulation that estimates the wear map (coming soon)
+├── cloth-simulation/     # Cloth simulation that estimates the wear map
 └── texture-synthesis/    # NCA-based texture synthesis conditioned on the wear map
 ```
 
@@ -33,9 +33,17 @@ Each folder is self-contained, with its own dependencies and instructions. The c
 
 ## Cloth Simulation
 
-**Coming soon.** The cloth simulation code will be released in `cloth-simulation/`. It is a modified version of [ARCSim](http://graphics.berkeley.edu/resources/ARCSim/). We modified its collision handling stage to record the normal contact force and the tangential relative velocity at each cloth vertex. From these, we integrate the frictional work over time to produce a wear map.
+`cloth-simulation/` contains our cloth simulation code. It is a modified version of [ARCSim](http://graphics.berkeley.edu/resources/ARCSim/). We modified its collision handling stage to record the normal contact force and the tangential relative velocity at each cloth vertex. From these, we integrate the frictional work over time, which gives the wear map.
 
-In the meantime, the wear maps used in the paper are available in [`texture-synthesis/data/colormaps_each_fabrics/`](texture-synthesis/data/colormaps_each_fabrics).
+The folder includes:
+- the modified ARCSim;
+- the ARCSim material parameters we estimated for the fabrics in the dataset;
+- a fork of [GarmentCode](https://github.com/maria-korosteleva/GarmentCode) that generates and drapes the pants;
+- scripts that run the simulation for every fabric and motion, and summarize the frictional work.
+
+The human body motions are derived from [AMASS](https://amass.is.tue.mpg.de) and [SMPL](https://smpl.is.tue.mpg.de), so they are not included. We provide a script that regenerates them from your own downloads. See [`cloth-simulation/README.md`](cloth-simulation/README.md) for setup and usage.
+
+The wear maps used in the paper are also available in [`texture-synthesis/data/colormaps_each_fabrics/`](texture-synthesis/data/colormaps_each_fabrics).
 
 ## Texture Synthesis
 
@@ -44,6 +52,13 @@ In the meantime, the wear maps used in the paper are available in [`texture-synt
 ## License
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). See [`LICENSE`](LICENSE) for details.
+
+The exception is `cloth-simulation/`, which is distributed under its own licenses:
+- Our pipeline code is MIT.
+- The modified ARCSim keeps the original ARCSim license (educational, research and not-for-profit use only).
+- The GarmentCode fork keeps its MIT license.
+
+See the [License section of `cloth-simulation/README.md`](cloth-simulation/README.md#license) for details.
 
 ## Citation
 
@@ -61,6 +76,8 @@ If you find this work useful, please cite our paper:
 }
 ```
 
+If you use the cloth simulation code, please also cite ARCSim (Narain et al. 2012, 2013) and GarmentCode; see [`cloth-simulation/README.md`](cloth-simulation/README.md).
+
 If you use the texture synthesis code, please also cite the original NCA work:
 
 ```bibtex
@@ -75,5 +92,7 @@ If you use the texture synthesis code, please also cite the original NCA work:
 ## Acknowledgments
 
 This work was partially supported by JST Adopting Sustainable Partnerships for Innovative Research Ecosystem (ASPIRE) Grant Number JPMJAP2401 and JST FOREST Program Grant Number JPMJFR232V.
+
+Our cloth simulation builds on [ARCSim](http://graphics.berkeley.edu/resources/ARCSim/) by Rahul Narain, Armin Samii, Tobias Pfaff and James O'Brien, Wajov's [CMake port of ARCSim](https://github.com/Wajov/arcsim-0.3.1), and [GarmentCode](https://github.com/maria-korosteleva/GarmentCode) by Maria Korosteleva and contributors.
 
 Our texture synthesis is based on the publicly available code of [Neural Cellular Automata: From Cells to Pixels](https://github.com/TheDevilWillBeBee/Cells2Pixels). We thank Ehsan Pajouheshgar for the support with the code.

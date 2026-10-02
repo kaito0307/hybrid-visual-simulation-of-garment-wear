@@ -1,0 +1,5 @@
+build/
+results/
+cmake-build*/
+.idea/*
+build-euler/

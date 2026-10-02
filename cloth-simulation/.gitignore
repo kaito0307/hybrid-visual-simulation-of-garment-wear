@@ -1,0 +1,7 @@
+__pycache__/
+runs/
+arcsim/build/
+arcsim/human-data/
+body_process/AMASS/
+body_process/smpl_models/
+body_process/arcsim_export/
